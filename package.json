@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "name": "pcat",
+  "description": "Node.js backend project",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ereren3/PCAT.git"
+  },
+  "keywords": [
+    "node.js",
+    "backend"
+  ],
+  "author": "Leo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ereren3/PCAT/issues"
+  },
+  "homepage": "https://github.com/Ereren3/PCAT#readme"
+}
