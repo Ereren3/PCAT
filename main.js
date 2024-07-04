@@ -2,7 +2,9 @@
 const express = require("express");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
-const Photo = require("./models/Photo")
+const pageRoutes = require("./routes/pageRoutes");
+const photosRoute = require("./routes/photosRoute");
+const Photo = require("./models/Photo");
 
 const app = express();
 
@@ -13,45 +15,12 @@ app.set("view engine", "ejs");
 
 //Middlewares
 app.use(express.static("public"));
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //Routes
-app.get("/", (req, res) => {
-  res.render("index", {
-    pageName: "about",
-  });
-});
-
-app.get("/about", (req, res) => {
-  res.render("about", {
-    pageName: "about",
-  });
-});
-
-app.get("/index", (req, res) => {
-  res.render("index", {
-    pageName: "index",
-  });
-});
-
-app.get("/photo", (req, res) => {
-  res.render("photo", {
-    pageName: "photo",
-  });
-});
-
-app.get("/add", (req, res) => {
-  res.render("add", {
-    pageName: "add",
-  });
-});
-
-app.post("/photos", (req, res) => {
-  console.log(req.body);
-  res.redirect("/photo");
-  Photo.create(req.body);
-});
+app.use("/", pageRoutes)
+app.use("/photos", photosRoute);
 
 //Port
 app.listen(3000, () => {
