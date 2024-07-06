@@ -1,25 +1,35 @@
 const Photo = require("../models/Photo");
+const fs = require("fs");
 
-exports.createPhoto = async (req, res) => {
+exports.createPhoto = (req, res) => {
   try {
-    await Photo.create(req.body);
+    console.log("here1");
+    const uploadDir = "public/uploads";
 
-    res.render("photo", {
-      pageName: "photo",
-    });
+    if (fs.existsSync(uploadDir)) {
+      let file = req.files.image;
+      let uploadPath = "D:/PCAT/public/uploads/" + file.name;
+
+      file.mv(uploadPath, async () => {
+        await Photo.create({
+          ...req.body,
+          image: "/uploads/" + file.name,
+        });
+      });
+    } else {
+      fs.mkdirSync(uploadDir);
+    }
+    res.redirect("/index");
   } catch (error) {
     console.log(error);
   }
 };
 
 exports.getPhotoPage = async (req, res) => {
-
   const photo = await Photo.findById(req.params.id);
-
-  //console.log(photo._id);
 
   res.render("photo", {
     pageName: "photo",
-    photo
-  }); 
+    photo,
+  });
 };

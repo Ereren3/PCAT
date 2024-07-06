@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const pageRoutes = require("./routes/pageRoutes");
 const photosRoute = require("./routes/photosRoute");
+const fileUpload = require("express-fileupload");
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(fileUpload());
 
 //Routes
 app.use("/", pageRoutes)
