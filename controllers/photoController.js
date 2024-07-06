@@ -11,3 +11,15 @@ exports.createPhoto = async (req, res) => {
     console.log(error);
   }
 };
+
+exports.getPhotoPage = async (req, res) => {
+
+  const photo = await Photo.findById(req.params.id);
+
+  //console.log(photo._id);
+
+  res.render("photo", {
+    pageName: "photo",
+    photo
+  }); 
+};
