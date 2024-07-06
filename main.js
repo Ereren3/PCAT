@@ -1,10 +1,8 @@
-//Objects
+//imports
 const express = require("express");
-const ejs = require("ejs");
 const mongoose = require("mongoose");
 const pageRoutes = require("./routes/pageRoutes");
 const photosRoute = require("./routes/photosRoute");
-const Photo = require("./models/Photo");
 
 const app = express();
 

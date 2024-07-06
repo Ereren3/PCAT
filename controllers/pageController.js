@@ -1,6 +1,10 @@
-exports.getIndexPage = (req, res) => {
+const Photos = require("../models/Photo");
+
+exports.getIndexPage = async (req, res) => {
+  const photos = await Photos.find({});
   res.render("index", {
     pageName: "index",
+    photos,
   });
 };
 
