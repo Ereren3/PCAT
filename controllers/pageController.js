@@ -14,14 +14,14 @@ exports.getAboutPage = (req, res) => {
   });
 };
 
-exports.getPhotoPage = (req, res) => {
-  res.render("photo", {
-    pageName: "photo",
-  });
-};
-
 exports.getAddPage = (req, res) => {
   res.render("add", {
     pageName: "add",
+  });
+};
+
+exports.getEditPage = (req, res) => {
+  res.render("edit", {
+    pageName: "edit",
   });
 };

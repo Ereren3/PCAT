@@ -15,7 +15,7 @@ https://templatemo.com/tm-552-video-catalog
 			<div class="tm-welcome-container tm-fixed-header tm-fixed-header-3">
 				<div class="text-center">
 					<p class="pt-5 px-3 tm-welcome-text tm-welcome-text-2 mb-1 mt-lg-0 mt-5 text-white mx-auto">
-                        Talk to Us<br>about any question you have
+                        Update your picture!
                     </p>                	
 				</div>                
             </div>
@@ -30,7 +30,7 @@ https://templatemo.com/tm-552-video-catalog
                     <div class="mx-auto pb-3 tm-about-text-container px-3">
                         <div class="row">
                             <div class="col-lg-12 mb-5">
-                                <form id="contact-form" action="/photos" method="POST" class="tm-contact-form" enctype="multipart/form-data">
+                                <form id="contact-form" action="/photos/<%= photo._id %>?_method=PUT" method="POST" class="tm-contact-form" enctype="multipart/form-data">
                                   <div class="form-group">
                                     <input type="text" name="title" class="form-control rounded-0" placeholder="Photo name" required="" />
                                   </div>                                  
@@ -38,15 +38,12 @@ https://templatemo.com/tm-552-video-catalog
                                     <textarea rows="8" name="description" class="form-control rounded-0" placeholder="Photo description"
                                               required=""></textarea>
                                   </div>
-                                  <div class="form-group">
-                                    <input type="file" name ="image" class="form-control-file rounded-0" required>
-                                  </div>
-
                                   <div class="form-group mb-0">
                                     <button type="submit" class="btn btn-primary rounded-0 d-block ml-auto mr-auto tm-btn-animate tm-btn-submit tm-icon-submit"><span>Submit</span></button>
                                   </div>
                                 </form>    
                             </div>
+                            
                         </div>  
                     </div>                                      			
 				</div>

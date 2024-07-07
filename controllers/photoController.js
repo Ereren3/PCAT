@@ -3,7 +3,6 @@ const fs = require("fs");
 
 exports.createPhoto = (req, res) => {
   try {
-    console.log("here1");
     const uploadDir = "public/uploads";
 
     if (fs.existsSync(uploadDir)) {
@@ -23,6 +22,35 @@ exports.createPhoto = (req, res) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+exports.deletePhoto = async (req, res) => {
+  const photo = await Photo.findById(req.params.id);
+  let deletePath = "D:/PCAT/public" + photo.image;
+
+  await Photo.findByIdAndDelete(photo._id);
+  fs.unlinkSync(deletePath);
+
+  res.redirect("/index");
+};
+
+exports.editPhoto = async (req, res) => {
+  const photo = await Photo.findById(req.params.id);
+
+  photo.title = req.body.title;
+  photo.description = req.body.description;
+  photo.save();
+
+  res.redirect(`/photos/${req.params.id}`);
+};
+
+exports.getEditPage = async (req, res) => {
+  const photo = await Photo.findById(req.params.id);
+
+  res.render("edit", {
+    pageName: "edit",
+    photo,
+  });
 };
 
 exports.getPhotoPage = async (req, res) => {
