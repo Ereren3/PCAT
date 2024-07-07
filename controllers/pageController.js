@@ -19,9 +19,3 @@ exports.getAddPage = (req, res) => {
     pageName: "add",
   });
 };
-
-exports.getEditPage = (req, res) => {
-  res.render("edit", {
-    pageName: "edit",
-  });
-};

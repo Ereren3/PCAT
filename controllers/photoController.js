@@ -1,6 +1,8 @@
+//imports
 const Photo = require("../models/Photo");
 const fs = require("fs");
 
+//This is for create new photo object in our database.
 exports.createPhoto = (req, res) => {
   try {
     const uploadDir = "public/uploads";
@@ -24,6 +26,7 @@ exports.createPhoto = (req, res) => {
   }
 };
 
+//This is for delete photo in our database
 exports.deletePhoto = async (req, res) => {
   const photo = await Photo.findById(req.params.id);
   let deletePath = "D:/PCAT/public" + photo.image;
@@ -44,7 +47,7 @@ exports.editPhoto = async (req, res) => {
   res.redirect(`/photos/${req.params.id}`);
 };
 
-exports.getEditPage = async (req, res) => {
+exports.getPhotoEditPage = async (req, res) => {
   const photo = await Photo.findById(req.params.id);
 
   res.render("edit", {
