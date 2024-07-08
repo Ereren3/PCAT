@@ -11,6 +11,7 @@ const app = express();
 //Database connection
 mongoose.connect("mongodb://127.0.0.1:27017/PCAT");
 
+//Template engine added
 app.set("view engine", "ejs");
 
 //Middlewares
@@ -30,5 +31,5 @@ app.use("/photos", photosRoute);
 
 //Port
 app.listen(3000, () => {
-  console.log("i am listening.");
+  console.log("Server started!");
 });

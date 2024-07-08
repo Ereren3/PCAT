@@ -1,10 +1,24 @@
 const Photos = require("../models/Photo");
 
 exports.getIndexPage = async (req, res) => {
-  const photos = await Photos.find({});
+
+  const page = req.query.page || 1;
+  const photoPerPage = 3;
+
+  const totalPhoto = await Photos.find({}).countDocuments();
+
+  const photos = await Photos.find({})
+  .sort('-createDate')
+  .skip((page-1) * photoPerPage)
+  .limit(photoPerPage);
+
+  //const totalPhoto = photos.countDocuments;
+
   res.render("index", {
     pageName: "index",
-    photos,
+    current: page,
+    pageCount: Math.ceil(totalPhoto/photoPerPage),
+    photos
   });
 };
 
